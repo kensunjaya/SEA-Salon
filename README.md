@@ -1,8 +1,27 @@
-# React + Vite
+# SEA Salon
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This website lets users easily browse available services, select their preferred stylist, and book
+appointments quickly. With a user-friendly interface and seamless booking integration, making a
+reservation with a top stylist has never been easier!
 
-Currently, two official plugins are available:
+## Prerequisites
+<li>Node.js version 18+</li>
+<li>Browser</li>
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### Clone this repository, then enter the directory (require Git)
+```
+git clone https://github.com/kensunjaya/SEA-Salon.git
+cd SEA-Salon
+```
+
+### Install all required depedencies
+```
+npm install
+```
+
+### Running the website locally
+```
+npm run dev
+```
+#### The website will automatically run on port `5173` if it is not currently used by any process
+#### Alternatively, click the url that is displayed by the vite itself
