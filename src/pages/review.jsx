@@ -1,14 +1,15 @@
 import Footer from "../components/Footer"
 import Navbar from "../components/Navbar"
-import star0 from '../assets/star0.png'
-import star1 from '../assets/star1.png'
-import { useState } from "react"
+import { useContext, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { db } from "../firebaseSetup"
 import { doc, getDoc, updateDoc } from "firebase/firestore"
 import { ScaleLoader } from "react-spinners"
+import { AuthContext } from "../context/AuthContext"
+import { FaStar } from "react-icons/fa6"
 
 const Review = () => {
+  const { userData } = useContext(AuthContext);
   const [tempRating, setTempRating] = useState(0);
   const [rating, setRating] = useState(0);
   const [comment, setComment] = useState("");
@@ -39,7 +40,7 @@ const Review = () => {
       const reviewData = await getReviewData();
       if (reviewData) {
         const newReviewData = {
-          review: [...reviewData.review, { rating: rating, comment: comment }]
+          review: [...reviewData.review, { rating: rating, comment: comment, name: userData.name }]
         };
         await updateDoc(doc(db, "datas", "review"), {
           review: newReviewData.review,
@@ -82,11 +83,11 @@ const Review = () => {
         <div className="text-[3vh]">Provide us a review</div>
 
         <div className="flex mt-[5vh]">
-          <button onClick={() => setRating(1)} onMouseEnter={() => setTempRating(1)} onMouseLeave={() => setTempRating(0)} className="hover:bg-transparent pr-3"><img src={`${tempRating > 0 || rating > 0 ? star1 : star0}`} alt="" className="w-[8vh]"/></button>
-          <button onClick={() => setRating(2)} onMouseEnter={() => setTempRating(2)} onMouseLeave={() => setTempRating(0)} className="hover:bg-transparent pr-3"><img src={`${tempRating > 1 || rating > 1 ? star1 : star0}`} alt="" className="w-[8vh]"/></button>
-          <button onClick={() => setRating(3)} onMouseEnter={() => setTempRating(3)} onMouseLeave={() => setTempRating(0)} className="hover:bg-transparent pr-3"><img src={`${tempRating > 2 || rating > 2 ? star1 : star0}`} alt="" className="w-[8vh]"/></button>
-          <button onClick={() => setRating(4)} onMouseEnter={() => setTempRating(4)} onMouseLeave={() => setTempRating(0)} className="hover:bg-transparent pr-3"><img src={`${tempRating > 3 || rating > 3 ? star1 : star0}`} alt="" className="w-[8vh]"/></button>
-          <button onClick={() => setRating(5)} onMouseEnter={() => setTempRating(5)} onMouseLeave={() => setTempRating(0)} className="hover:bg-transparent pr-3"><img src={`${tempRating > 4 || rating > 4 ? star1 : star0}`} alt="" className="w-[8vh]"/></button>
+          <button onClick={() => setRating(1)} onMouseEnter={() => setTempRating(1)} onMouseLeave={() => setTempRating(0)} className="hover:bg-transparent pr-3"><FaStar color={`${tempRating > 0 || rating > 0 ? '#ffb900' : 'gray'}`} size={'8vh'}/></button>
+          <button onClick={() => setRating(2)} onMouseEnter={() => setTempRating(2)} onMouseLeave={() => setTempRating(0)} className="hover:bg-transparent pr-3"><FaStar color={`${tempRating > 1 || rating > 1 ? '#ffb900' : 'gray'}`} size={'8vh'}/></button>
+          <button onClick={() => setRating(3)} onMouseEnter={() => setTempRating(3)} onMouseLeave={() => setTempRating(0)} className="hover:bg-transparent pr-3"><FaStar color={`${tempRating > 2 || rating > 2 ? '#ffb900' : 'gray'}`} size={'8vh'}/></button>
+          <button onClick={() => setRating(4)} onMouseEnter={() => setTempRating(4)} onMouseLeave={() => setTempRating(0)} className="hover:bg-transparent pr-3"><FaStar color={`${tempRating > 3 || rating > 3 ? '#ffb900' : 'gray'}`} size={'8vh'}/></button>
+          <button onClick={() => setRating(5)} onMouseEnter={() => setTempRating(5)} onMouseLeave={() => setTempRating(0)} className="hover:bg-transparent pr-3"><FaStar color={`${tempRating > 4 || rating > 4 ? '#ffb900' : 'gray'}`} size={'8vh'}/></button>
         </div>
 
         {rating > 0 && (

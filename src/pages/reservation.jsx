@@ -1,13 +1,9 @@
 import Footer from "../components/Footer"
 import Navbar from "../components/Navbar"
-import star0 from '../assets/star0.png'
-import star1 from '../assets/star1.png'
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 
 const Reservation = () => {
-  const [tempRating, setTempRating] = useState(0);
-  const [rating, setRating] = useState(0);
   const [name, setName] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [service, setService] = useState("");
