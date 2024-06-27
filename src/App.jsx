@@ -4,6 +4,7 @@ import Home from './pages/home';
 import Review from './pages/review';
 import Reservation from './pages/reservation';
 import Register from './pages/register';
+import Login from './pages/login';
 
 // import './App.css'
 
@@ -19,6 +20,7 @@ const App = () => {
           <Route path="/review" element={<Review />} />
           <Route path="/reservation" element={<Reservation />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/login" element={<Login />} />
         </Routes>
       </Router>
     </main>

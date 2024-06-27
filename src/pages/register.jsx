@@ -68,7 +68,7 @@ const Register = () => {
           <ScaleLoader loading={loading} color="white" margin={5} height={35} />
         </div>
       )}
-      <Navbar />
+      <Navbar authPage={true}/>
       <div className="bg-gray-200 flex flex-grow flex-col w-screen bg-cover pt-24 text-black font-sans p-[10vh]">
         <div className="mt-[5vh] text-[4vh] font-semibold">Register your account</div>  
 
@@ -78,7 +78,11 @@ const Register = () => {
           <input type="text" placeholder="Phone Number" className="bg-transparent border border-5 border-gray-500 rounded-xl p-3 my-3 text-lg w-full" value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)}/>
           <input type="password" placeholder="Password" className="bg-transparent border border-5 border-gray-500 rounded-xl p-3 my-3 text-lg w-full" value={password} onChange={(e) => setPassword(e.target.value)}/>
           <input type="password" placeholder="Confirm Password" className="bg-transparent border border-5 border-gray-500 rounded-xl p-3 my-3 text-lg w-full" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)}/>
-          <button onClick={() => handleSubmit()} className="bg-black w-fit px-10 py-3 rounded-2xl mt-10 text-white hover:bg-gray-500">Submit</button>
+          <div className="flex mt-2">
+            <div className="mr-3">Already have an account?</div>
+            <a href="/login" className="text-gray-500">Login here</a>
+          </div>
+          <button onClick={() => handleSubmit()} className="bg-black w-fit px-10 py-3 rounded-2xl mt-10 text-white hover:bg-gray-500">Register</button>
         </div>
         
       </div>
