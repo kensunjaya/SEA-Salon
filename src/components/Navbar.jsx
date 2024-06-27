@@ -29,8 +29,19 @@ const Navbar = (props) => {
       {userData.name !== "Not Signed In" && (
         <div className="flex flex-grow h-full ml-10 text-black items-center px-10">
           <button className="text-xl py-2 px-5 rounded-full mx-5" onClick={() => handleClick("/")}>Home</button>
-          <button className="text-xl py-2 px-5 rounded-full mx-5" onClick={() => handleClick("/review")}>Review</button>
-          <button className="text-xl py-2 px-5 rounded-full mx-5" onClick={() => handleClick("/reservation")}>Reservation</button>
+          {userData.role === "Admin" ? (
+            <div>
+              <button className="text-xl py-2 px-5 rounded-full mx-5" onClick={() => handleClick("/addservice")}>Add new service</button>
+              <button className="text-xl py-2 px-5 rounded-full mx-5" onClick={() => handleClick("/reservation")}>View Review</button>
+            </div>
+          )
+          :
+          (
+            <div>
+              <button className="text-xl py-2 px-5 rounded-full mx-5" onClick={() => handleClick("/review")}>Review</button>
+              <button className="text-xl py-2 px-5 rounded-full mx-5" onClick={() => handleClick("/reservation")}>Reservation</button>
+            </div>
+          )}
         </div>
       )}
       

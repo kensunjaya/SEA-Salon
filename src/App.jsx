@@ -1,14 +1,39 @@
-import { useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { BrowserRouter as Router, Route, Routes, useNavigate } from "react-router-dom";
 import Home from './pages/home';
 import Review from './pages/review';
 import Reservation from './pages/reservation';
 import Register from './pages/register';
 import Login from './pages/login';
+import AddService from './admin/AddService';
+import { AuthContext } from './context/AuthContext';
+import { doc, getDoc } from 'firebase/firestore';
+import { db } from './firebaseSetup';
 
 // import './App.css'
 
 const App = () => {
+  const {setServiceData} = useContext(AuthContext);
+  const getServiceData = async () => {
+    try {
+      const docRef = doc(db, "datas", "services");
+      const docSnap = await getDoc(docRef);
+      if (docSnap.exists()) {
+        setServiceData(docSnap.data().service);
+      } else {
+        console.log("Data does not exist in database!");
+        setServiceData([]);
+      }
+    } catch (e) {
+      console.error("Error getting document:", e);
+      setServiceData([]);
+    }
+  };
+
+  useEffect(() => {
+    getServiceData();
+  }, []);
+
   return (
     <main className="flex flex-col min-h-screen">
       <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -21,6 +46,7 @@ const App = () => {
           <Route path="/reservation" element={<Reservation />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/addservice" element={<AddService />} />
         </Routes>
       </Router>
     </main>

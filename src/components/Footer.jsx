@@ -1,11 +1,21 @@
 import haircut from '../assets/haircut.png'
 import manicure from '../assets/manicure.png'
 import facial_treatment from '../assets/facial_treatment.png'
+import default_icon from '../assets/default_icon.png'
+import { useContext, useEffect, useState } from 'react'
+import { set } from 'firebase/database'
+import { doc, getDoc } from 'firebase/firestore'
+import { db } from '../firebaseSetup'
+import { AuthContext } from '../context/AuthContext'
 
 const Footer = () => {
+  const { serviceData } = useContext(AuthContext);
+
+  
+
   return (
     <div className="w-full bg-white h-[20vh] font-sans flex mt-auto text-black text-center items-center">
-      <div className="border border-t-black w-[10%] h-full flex flex-col justify-center items-center">
+      <div className="border border-t-black min-w-[10%] h-full flex flex-col justify-center items-center">
         <div className="text-left w-full px-5">Contact Detail:</div>
         <div className="my-2 px-5 text-left w-full">
           <div className="font-semibold">Thomas</div>
@@ -27,10 +37,18 @@ const Footer = () => {
         <img src={manicure} alt="Manicure" className="w-[8vh] h-[8vh] opacity-60 m-3"/>
         <div>Manicure and Pedicure</div>
       </div>
-      <div className="border border-t-black w-[20%] h-full flex flex-col justify-center items-center">
-        <img src={facial_treatment} alt="Manicure" className="w-[8vh] h-[8vh] opacity-60 m-3"/>
+      <div className="border border-t-black border-r-black w-[20%] h-full flex flex-col justify-center items-center">
+        <img src={facial_treatment} alt="Facial Treatments" className="w-[8vh] h-[8vh] opacity-60 m-3"/>
         <div>Facial Treatments</div>
       </div>
+      {serviceData.map((service, index) => {
+        return (
+          <div key={index} className="border border-t-black border-r-black w-[20%] h-full flex flex-col justify-center items-center">
+            <img src={default_icon} alt="Service" className="w-[8vh] h-[8vh] opacity-60 m-3"/>
+            <div>{service.name}</div>
+          </div>
+        );
+      })}
     </div>
   );
 }

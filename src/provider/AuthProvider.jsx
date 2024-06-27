@@ -5,6 +5,7 @@ import { onAuthStateChanged } from "firebase/auth";
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
+  const [serviceData, setServiceData] = useState([]);
   const [userData, setUserData] = useState({
     name: "Not Signed In",
     email:"null@mail.com",
@@ -23,5 +24,5 @@ export const AuthProvider = ({ children }) => {
     return unsubscribe;
   }, []);
 
-  return <AuthContext.Provider value={{ userData, user, setUserData, setAdmin, admin }}>{children}</AuthContext.Provider>;
+  return <AuthContext.Provider value={{ userData, user, setUserData, setAdmin, admin, serviceData, setServiceData }}>{children}</AuthContext.Provider>;
 };
