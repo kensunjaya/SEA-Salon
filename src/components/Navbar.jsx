@@ -32,7 +32,7 @@ const Navbar = (props) => {
           {userData.role === "Admin" ? (
             <div>
               <button className="text-xl py-2 px-5 rounded-full mx-5" onClick={() => handleClick("/addservice")}>Add new service</button>
-              <button className="text-xl py-2 px-5 rounded-full mx-5" onClick={() => handleClick("/reservation")}>View Review</button>
+              <button className="text-xl py-2 px-5 rounded-full mx-5" onClick={() => handleClick("/viewreview")}>View Review</button>
             </div>
           )
           :

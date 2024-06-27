@@ -9,6 +9,7 @@ import AddService from './admin/AddService';
 import { AuthContext } from './context/AuthContext';
 import { doc, getDoc } from 'firebase/firestore';
 import { db } from './firebaseSetup';
+import ViewReview from './admin/ViewReview';
 
 // import './App.css'
 
@@ -47,6 +48,7 @@ const App = () => {
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
           <Route path="/addservice" element={<AddService />} />
+          <Route path="/viewreview" element={<ViewReview />} />
         </Routes>
       </Router>
     </main>
