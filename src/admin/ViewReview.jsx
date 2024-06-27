@@ -49,12 +49,12 @@ const ViewReview = () => {
         </div>
       )}
       <Navbar authPage={true}/>
-      <div className="bg-gray-200 flex flex-grow flex-col w-screen bg-cover pt-24 text-black font-sans p-[10vh]">
+      <div className="bg-gray-200 flex flex-grow flex-col w-screen bg-cover pt-[8vh] text-black font-sans p-[10vh] text-[1.5vh]">
         <div className="mt-[5vh] text-[4vh] font-semibold">Customer reviews</div>
         {reviewData.map((review, index) => {
           return (
-            <div key={index} className="mt-5 border-2">
-              <div className="flex">
+            <div key={index} className="mt-[2vh] border-2">
+              <div className="flex mb-[0.5vh]">
 
                 <FaStar color={review.rating > 0 ? '#ffb900' : 'gray'}/>
                 <FaStar color={review.rating > 1 ? '#ffb900' : 'gray'}/>
@@ -63,8 +63,8 @@ const ViewReview = () => {
                 <FaStar color={review.rating > 4 ? '#ffb900' : 'gray'}/>
   
               </div>
-              <div className="text-lg font-semibold flex">Comment: <div className="font-regular ml-2">{review.comment}</div></div>
-              <div className="text-lg font-semibold flex">Name: <div className="font-regular ml-2">{review.name}</div></div>
+              <div className="font-semibold flex">Comment: <div className="font-regular ml-[1vh]">{review.comment}</div></div>
+              <div className="font-semibold flex">Name: <div className="font-regular ml-[1vh]">{review.name}</div></div>
             </div>
           )
         })}

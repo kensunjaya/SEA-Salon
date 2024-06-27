@@ -83,13 +83,13 @@ const AddService = () => {
         </div>
       )}
       <Navbar authPage={true}/>
-      <div className="bg-gray-200 flex flex-grow flex-col w-screen bg-cover pt-24 text-black font-sans p-[10vh]">
+      <div className="bg-gray-200 flex flex-grow flex-col w-screen bg-cover pt-[10vh] text-black font-sans p-[10vh]">
         <div className="mt-[5vh] text-[4vh] font-semibold">Add a new service</div>  
 
         <div className="w-full">
-          <input type="text" placeholder="Service name" className="bg-transparent border border-5 border-gray-500 rounded-xl p-3 my-3 text-lg w-full" value={service} onChange={(e) => setService(e.target.value)}/>
-          <input type="number" onKeyDown={handleKeyDown} placeholder="Duration" className="bg-transparent border border-5 border-gray-500 rounded-xl p-3 my-3 text-lg w-full" value={duration} onChange={(e) => setDuration(e.target.value)}/>
-          <button onClick={() => postService()} className="bg-black w-fit px-10 py-3 rounded-2xl mt-10 text-white hover:bg-gray-500">Add service</button>
+          <input type="text" placeholder="Service name" className="bg-transparent border border-5 border-gray-500 rounded-[1vh] p-[1vh] my-[1vh] text-[1.75vh] w-full" value={service} onChange={(e) => setService(e.target.value)}/>
+          <input type="number" onKeyDown={handleKeyDown} placeholder="Duration" className="bg-transparent border border-5 border-gray-500 rounded-[1vh] p-[1vh] my-[1vh] text-[1.75vh] w-full" value={duration} onChange={(e) => setDuration(e.target.value)}/>
+          <button onClick={() => postService()} className="bg-black w-fit px-[4vh] py-[1vh] rounded-[1vh] mt-[4vh] text-white hover:bg-gray-500 text-[1.5vh]">Add service</button>
         </div>
         
       </div>

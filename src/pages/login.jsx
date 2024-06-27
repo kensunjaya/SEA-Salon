@@ -68,17 +68,17 @@ const Login = () => {
         </div>
       )}
       <Navbar authPage={true}/>
-      <div className="bg-gray-200 flex flex-grow flex-col w-screen bg-cover pt-24 text-black font-sans p-[10vh]">
+      <div className="bg-gray-200 flex flex-grow flex-col w-screen bg-cover pt-[10vh] text-black font-sans p-[10vh]">
         <div className="mt-[5vh] text-[4vh] font-semibold">Sign in to your account</div>  
 
         <div className="w-full">
-          <input type="email" placeholder="Email" className="bg-transparent border border-5 border-gray-500 rounded-xl p-3 my-3 text-lg w-full" value={email} onChange={(e) => setEmail(e.target.value)}/>
-          <input type="password" onKeyDown={handleKeyDown} placeholder="Password" className="bg-transparent border border-5 border-gray-500 rounded-xl p-3 my-3 text-lg w-full" value={password} onChange={(e) => setPassword(e.target.value)}/>
-          <div className="flex mt-2">
-            <div className="mr-3">Don't have an account?</div>
-            <a href="/register" className="text-gray-500">Register here</a>
+          <input type="email" placeholder="Email" className="bg-transparent border border-5 border-gray-500 rounded-[1vh] p-[1vh] my-[1vh] text-[1.75vh] w-full font-sans" value={email} onChange={(e) => setEmail(e.target.value)}/>
+          <input type="password" onKeyDown={handleKeyDown} placeholder="Password" className="bg-transparent border border-5 border-gray-500 rounded-[1vh] p-[1vh] my-[1vh] text-[1.75vh] w-full font-sans" value={password} onChange={(e) => setPassword(e.target.value)}/>
+          <div className="flex mt-[1vh] text-[1.5vh]">
+            <div className="mr-[1vh]">Don't have an account?</div>
+            <a onClick={() => navigate('/register')} className="text-gray-500 cursor-pointer hover:underline">Register here</a>
           </div>
-          <button onClick={() => signIn()} className="bg-black w-fit px-10 py-3 rounded-2xl mt-10 text-white hover:bg-gray-500">Sign in</button>
+          <button onClick={() => signIn()} className="bg-black w-fit px-[4vh] py-[1vh] rounded-[1vh] mt-[4vh] text-white hover:bg-gray-500 text-[1.5vh]">Sign in</button>
         </div>
         
       </div>
