@@ -1,9 +1,11 @@
 import Footer from "../components/Footer"
 import Navbar from "../components/Navbar"
-import { useState } from "react"
+import { useContext, useState } from "react"
 import { useNavigate } from "react-router-dom"
+import { AuthContext } from "../context/AuthContext"
 
 const Reservation = () => {
+  const { serviceData } = useContext(AuthContext);
   const [name, setName] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [service, setService] = useState("");
@@ -32,9 +34,14 @@ const Reservation = () => {
           <input name="" id="" placeholder="Active phone number" className="bg-transparent border border-5 border-gray-500 rounded-xl p-3 my-3 text-lg w-full" value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)}/>
           <select name="Type of Service" id="cars" className="bg-transparent border border-5 border-gray-500 rounded-xl p-3 my-3 text-lg w-full font-sans">
             <option value="" disabled="true">Type of service</option>
-            <option value="haircuts and styling">Haircuts and Styling</option>
-            <option value="manicure and pedicure">Manicure and Pedicure</option>
-            <option value="facial treatments">Facial Treatments</option>
+            <option value="Haircuts and Styling">Haircuts and Styling</option>
+            <option value="Manicure and Pedicure">Manicure and Pedicure</option>
+            <option value="Facial Treatments">Facial Treatments</option>
+            {serviceData.map((service, index) => {
+              return (
+                <option key={index} value={service.name}>{service.name}</option>
+              )
+            })}
           </select>
           <input type="date" id="" placeholder="Date" className="bg-transparent border border-5 border-gray-500 rounded-xl p-3 my-3 text-lg w-full" value={date} onChange={(e) => setDate(e.target.value)}/>
           <input type="time" id="" placeholder="Time" className="bg-transparent border border-5 border-gray-500 rounded-xl p-3 my-3 text-lg w-full" value={time} onChange={(e) => setTime(e.target.value)}/>
