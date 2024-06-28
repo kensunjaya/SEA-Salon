@@ -83,7 +83,7 @@ const Review = () => {
           <ScaleLoader loading={loading} color="white" margin={5} height={35} />
         </div>
       )}
-      <Navbar />
+      <Navbar active="review" />
       <div className="bg-gray-200 flex flex-grow flex-col w-screen bg-cover pt-[8vh] text-black font-sans p-[10vh]">
         <div className="mt-[10vh] text-[6vh] font-semibold">How was your experience with our services?</div>  
         <div className="text-[3vh]">Provide us a review</div>

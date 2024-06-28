@@ -82,7 +82,7 @@ const AddService = () => {
           <ScaleLoader loading={loading} color="white" margin={5} height={35} />
         </div>
       )}
-      <Navbar authPage={true}/>
+      <Navbar authPage={true} active="addservice"/>
       <div className="bg-gray-200 flex flex-grow flex-col w-screen bg-cover pt-[10vh] text-black font-sans p-[10vh]">
         <div className="mt-[5vh] text-[4vh] font-semibold">Add a new service</div>  
 

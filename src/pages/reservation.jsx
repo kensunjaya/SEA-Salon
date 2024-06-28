@@ -30,7 +30,7 @@ const Reservation = () => {
 
   return (
     <div className="flex flex-col min-h-screen">
-      <Navbar />
+      <Navbar active="reservation" />
       <div className="bg-gray-200 flex flex-grow flex-col w-screen bg-cover pt-[8vh] text-black font-sans p-[10vh]">
         <div className="mt-[5vh] mb-[1vh] text-[4vh] font-semibold">Reservation Form</div>  
         

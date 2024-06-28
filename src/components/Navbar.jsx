@@ -28,18 +28,18 @@ const Navbar = (props) => {
       <div className="text-black text-[2vh] font-medium">SEA Salon</div>
       {userData.name !== "Not Signed In" && (
         <div className="flex flex-grow h-full ml-[10vh] text-black items-center px-[5vh]">
-          <button className="text-[1.75vh] py-[0.75vh] px-[2vh] rounded-full mx-[2.5vh]" onClick={() => handleClick("/")}>Home</button>
+          <button className={`text-[1.75vh] py-[0.75vh] px-[2.5vh] rounded-full mx-[2.5vh] ${props.active === 'home' && 'bg-[#f0f0f0]'}`} onClick={() => handleClick("/")}>Home</button>
           {userData.role === "Admin" ? (
             <div>
-              <button className="text-[1.75vh] py-[0.75vh] px-[2.5vh] rounded-full mx-[2.5vh]" onClick={() => handleClick("/addservice")}>Add new service</button>
-              <button className="text-[1.75vh] py-[0.75vh] px-[2.5vh] rounded-full mx-[2.5vh]" onClick={() => handleClick("/viewreview")}>View Review</button>
+              <button className={`text-[1.75vh] py-[0.75vh] px-[2.5vh] rounded-full mx-[2.5vh] ${props.active === 'addservice' && 'bg-[#f0f0f0]'}`} onClick={() => handleClick("/addservice")}>Add new service</button>
+              <button className={`text-[1.75vh] py-[0.75vh] px-[2.5vh] rounded-full mx-[2.5vh] ${props.active === 'viewreview' && 'bg-[#f0f0f0]'}`} onClick={() => handleClick("/viewreview")}>View Review</button>
             </div>
           )
           :
           (
             <div>
-              <button className="text-[1.75vh] py-[0.75vh] px-[2.5vh] rounded-full mx-[2.5vh]" onClick={() => handleClick("/review")}>Review</button>
-              <button className="text-[1.75vh] py-[0.75vh] px-[2.5vh] rounded-full mx-[2.5vh]" onClick={() => handleClick("/reservation")}>Reservation</button>
+              <button className={`text-[1.75vh] py-[0.75vh] px-[2.5vh] rounded-full mx-[2.5vh] ${props.active === 'review' && 'bg-[#f0f0f0]'}`} onClick={() => handleClick("/review")}>Review</button>
+              <button className={`text-[1.75vh] py-[0.75vh] px-[2.5vh] rounded-full mx-[2.5vh] ${props.active === 'reservation' && 'bg-[#f0f0f0]'}`} onClick={() => handleClick("/reservation")}>Reservation</button>
             </div>
           )}
         </div>

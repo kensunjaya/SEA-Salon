@@ -48,7 +48,7 @@ const ViewReview = () => {
           <ScaleLoader loading={loading} color="white" margin={5} height={35} />
         </div>
       )}
-      <Navbar authPage={true}/>
+      <Navbar authPage={true} active="viewreview"/>
       <div className="bg-gray-200 flex flex-grow flex-col w-screen bg-cover pt-[8vh] text-black font-sans p-[10vh] text-[1.5vh]">
         <div className="mt-[5vh] text-[4vh] font-semibold">Customer reviews</div>
         {reviewData.map((review, index) => {

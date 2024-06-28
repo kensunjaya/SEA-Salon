@@ -6,7 +6,7 @@ import Footer from '../components/Footer'
 const Home = () => {
   return (
     <div className="flex flex-col min-h-screen">
-      <Navbar />
+      <Navbar active="home" />
       <div className="bg-[url('./assets/background.jpg')] flex flex-grow flex-col w-screen bg-cover pt-[8vh] p-[3vh] text-black font-sans">
         <div className="ml-[10vh] mt-[25vh] text-[10vh] font-semibold">SEA SALON</div>
         <div className="ml-[10vh] text-[3vh]">Beauty and Elegance Redefined</div>
