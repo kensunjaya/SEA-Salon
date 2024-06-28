@@ -9,13 +9,25 @@ import { AuthContext } from "../context/AuthContext"
 import Footer from "../components/Footer"
 
 const AddService = () => {
-  const { setServiceData, admin } = useContext(AuthContext);
+  const { setServiceData, admin, branchData, setBranchData, serviceData } = useContext(AuthContext);
   const [password, setPassword] = useState("");
+  const [selectedBranch, setSelectedBranch] = useState(0);
   const [service, setService] = useState("");
-  const [duration, setDuration] = useState(0);
+  const [duration, setDuration] = useState("");
   const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
+
+  const isServiceExist = (service) => {
+    if (serviceData) {
+      for (let i = 0; i < serviceData.length; i++) {
+        if (serviceData[i].name === service) {
+          return true;
+        }
+      }
+      return false;
+    }
+  }
 
   useEffect(() => {
     if (!admin) {
@@ -58,10 +70,22 @@ const AddService = () => {
         const newServiceData = {
           service: [...serviceData.service, { duration: duration.toString(), name: service }]
         };
-        await updateDoc(doc(db, "datas", "services"), {
-          service: newServiceData.service,
+        let tempBranchData = branchData;
+        console.log(typeof(selectedBranch))
+        tempBranchData[selectedBranch].services = [...tempBranchData[selectedBranch].services, { duration: duration.toString(), name: service }];
+        
+        await updateDoc(doc(db, "datas", "branch"), {
+          branches: tempBranchData,
         });
-        setServiceData(newServiceData.service);
+        setBranchData(tempBranchData);
+
+        if (!isServiceExist(service)) {
+          await updateDoc(doc(db, "datas", "services"), {
+            service: newServiceData.service,
+          });
+          setServiceData(newServiceData.service);
+        }
+        
         alert("Service added successfully!");
         setService("");
         setDuration(0);
@@ -88,6 +112,14 @@ const AddService = () => {
 
         <div className="w-full">
           <input type="text" placeholder="Service name" className="bg-transparent border border-5 border-gray-500 rounded-[1vh] p-[1vh] my-[1vh] text-[1.75vh] w-full" value={service} onChange={(e) => setService(e.target.value)}/>
+          <select onChange={(e) => {setSelectedBranch(parseInt(e.target.value))}} name="Branch Name" className="bg-transparent border border-5 border-gray-500 rounded-[1vh] p-[1vh] my-[1vh] text-[1.75vh] w-full font-sans">
+            <option value="" disabled="true">Select a branch</option>
+            {branchData.map((branch, index) => {
+              return (
+                <option key={index} value={index}>{branch.name} - {branch.location}</option>
+              )
+            })}
+          </select>
           <input type="number" onKeyDown={handleKeyDown} placeholder="Duration" className="bg-transparent border border-5 border-gray-500 rounded-[1vh] p-[1vh] my-[1vh] text-[1.75vh] w-full" value={duration} onChange={(e) => setDuration(e.target.value)}/>
           <button onClick={() => postService()} className="bg-black w-fit px-[4vh] py-[1vh] rounded-[1vh] mt-[4vh] text-white hover:bg-gray-500 text-[1.5vh]">Add service</button>
         </div>

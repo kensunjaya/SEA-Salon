@@ -1,5 +1,5 @@
-import { useContext, useEffect, useState } from 'react'
-import { BrowserRouter as Router, Route, Routes, useNavigate } from "react-router-dom";
+import { useContext, useEffect } from 'react'
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Home from './pages/home';
 import Review from './pages/review';
 import Reservation from './pages/reservation';
@@ -11,9 +11,10 @@ import { doc, getDoc } from 'firebase/firestore';
 import { db } from './firebaseSetup';
 import ViewReview from './admin/ViewReview';
 import AddBranch from './admin/AddBranch';
+import Reservations from './admin/Reservations';
 
 const App = () => {
-  const {setServiceData} = useContext(AuthContext);
+  const {setServiceData, setBranchData} = useContext(AuthContext);
   const getServiceData = async () => {
     try {
       const docRef = doc(db, "datas", "services");
@@ -31,8 +32,25 @@ const App = () => {
     }
   };
 
+  const getBranchData = async () => {
+    try {
+      const docRef = doc(db, "datas", "branch");
+      const docSnap = await getDoc(docRef);
+      if (docSnap.exists()) {
+        setBranchData(docSnap.data().branches);
+        console.log(docSnap.data().branches);
+      } else {
+        console.log("Data does not exist in database!");
+        return null;
+      }
+    } catch (e) {
+      console.error("Error getting document:", e);
+      return null;
+    }
+  };
+
   useEffect(() => {
-    getServiceData();
+    getServiceData().then(getBranchData()); 
   }, []);
 
   return (
@@ -50,6 +68,7 @@ const App = () => {
           <Route path="/addservice" element={<AddService />} />
           <Route path="/viewreview" element={<ViewReview />} />
           <Route path="/addbranch" element={<AddBranch />} />
+          <Route path="/reservations" element={<Reservations />} />
         </Routes>
       </Router>
     </main>

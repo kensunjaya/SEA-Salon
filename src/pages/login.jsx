@@ -3,7 +3,7 @@ import { useContext, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { signInWithEmailAndPassword } from "firebase/auth"
 import { auth, db } from "../firebaseSetup"
-import { doc, getDoc, setDoc } from "firebase/firestore"
+import { doc, getDoc } from "firebase/firestore"
 import { ScaleLoader } from "react-spinners"
 import { AuthContext } from "../context/AuthContext"
 

@@ -75,7 +75,7 @@ const Review = () => {
       {submitted && (
         <div className="absolute inset-0 flex flex-col items-center justify-center bg-opacity-50 bg-black font-sans text-3xl">
           <div>Thank you for your review! You'll be redirected to Home page shortly.</div>
-          <ScaleLoader loading={true} color="white" margin={5} height={35} />
+          <ScaleLoader loading={submitted} color="white" margin={5} height={35} />
         </div>
       )}
       {loading && (
@@ -86,7 +86,7 @@ const Review = () => {
       <Navbar active="review" />
       <div className="bg-gray-200 flex flex-grow flex-col w-screen bg-cover pt-[8vh] text-black font-sans p-[10vh]">
         <div className="mt-[10vh] text-[6vh] font-semibold">How was your experience with our services?</div>  
-        <div className="text-[3vh]">Provide us a review</div>
+        <div className="text-[3vh]">Your review means a lot to us</div>
 
         <div className="flex mt-[5vh]">
           <button onClick={() => setRating(1)} onMouseEnter={() => setTempRating(1)} onMouseLeave={() => setTempRating(0)} className="hover:bg-transparent pr-[1vh]"><FaStar color={`${tempRating > 0 || rating > 0 ? '#ffb900' : 'gray'}`} size={'8vh'}/></button>

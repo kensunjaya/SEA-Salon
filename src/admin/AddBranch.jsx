@@ -3,7 +3,7 @@ import { useContext, useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { signInWithEmailAndPassword } from "firebase/auth"
 import { auth, db } from "../firebaseSetup"
-import { doc, getDoc, setDoc, updateDoc } from "firebase/firestore"
+import { doc, getDoc, serverTimestamp, setDoc, updateDoc } from "firebase/firestore"
 import { ScaleLoader } from "react-spinners"
 import { AuthContext } from "../context/AuthContext"
 import Footer from "../components/Footer"
@@ -53,7 +53,11 @@ const AddBranch = () => {
       const branchData = await getBranchData();
       if (branchData) {
         const newBranchData = {
-          branches: [...branchData.branches, { name: branch, location: location, open: openTime, close: closeTime }]
+          branches: [...branchData.branches, { name: branch, location: location, open: openTime, close: closeTime, services: [
+            { name: "Haircuts and styling", duration: "60"},
+            { name: "Manicure and Pedicure", duration: "60"},
+            { name: "Facial Treatments", duration: "60"},
+          ] }]
         };
         await updateDoc(doc(db, "datas", "branch"), {
           branches: newBranchData.branches,
