@@ -21,7 +21,7 @@ const AddService = () => {
     if (!admin) {
       navigate("/login");
     }
-  });
+  }, []);
 
   const handleKeyDown = (event) => {
     if (event.key === "Enter" && !event.shiftKey) {

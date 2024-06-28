@@ -33,6 +33,7 @@ const Navbar = (props) => {
             <div>
               <button className={`text-[1.75vh] py-[0.75vh] px-[2.5vh] rounded-full mx-[2.5vh] ${props.active === 'addservice' && 'bg-[#f0f0f0]'}`} onClick={() => handleClick("/addservice")}>Add new service</button>
               <button className={`text-[1.75vh] py-[0.75vh] px-[2.5vh] rounded-full mx-[2.5vh] ${props.active === 'viewreview' && 'bg-[#f0f0f0]'}`} onClick={() => handleClick("/viewreview")}>View Review</button>
+              <button className={`text-[1.75vh] py-[0.75vh] px-[2.5vh] rounded-full mx-[2.5vh] ${props.active === 'addbranch' && 'bg-[#f0f0f0]'}`} onClick={() => handleClick("/addbranch")}>Add new branch</button>
             </div>
           )
           :

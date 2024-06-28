@@ -10,8 +10,7 @@ import { AuthContext } from './context/AuthContext';
 import { doc, getDoc } from 'firebase/firestore';
 import { db } from './firebaseSetup';
 import ViewReview from './admin/ViewReview';
-
-// import './App.css'
+import AddBranch from './admin/AddBranch';
 
 const App = () => {
   const {setServiceData} = useContext(AuthContext);
@@ -21,6 +20,7 @@ const App = () => {
       const docSnap = await getDoc(docRef);
       if (docSnap.exists()) {
         setServiceData(docSnap.data().service);
+        console.log(docSnap.data().service);
       } else {
         console.log("Data does not exist in database!");
         setServiceData([]);
@@ -49,6 +49,7 @@ const App = () => {
           <Route path="/login" element={<Login />} />
           <Route path="/addservice" element={<AddService />} />
           <Route path="/viewreview" element={<ViewReview />} />
+          <Route path="/addbranch" element={<AddBranch />} />
         </Routes>
       </Router>
     </main>
