@@ -8,10 +8,9 @@ import { ScaleLoader } from "react-spinners"
 import { AuthContext } from "../context/AuthContext"
 
 const Login = () => {
-  const { setUserData, setAdmin } = useContext(AuthContext);
+  const { setUserData, setAdmin, loading, setLoading } = useContext(AuthContext);
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
-  const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
 

@@ -8,16 +8,17 @@ import Login from './pages/login';
 import AddService from './admin/AddService';
 import { AuthContext } from './context/AuthContext';
 import { doc, getDoc } from 'firebase/firestore';
-import { db } from './firebaseSetup';
+import { auth, db } from './firebaseSetup';
 import ViewReview from './admin/ViewReview';
 import AddBranch from './admin/AddBranch';
 import Reservations from './admin/Reservations';
 
 const App = () => {
   const [isMaintenance, setIsMaintenance] = useState(false);
-  const {setServiceData, setBranchData} = useContext(AuthContext);
+  const {setServiceData, setBranchData, setUserData, user, setLoading} = useContext(AuthContext);
   const getServiceData = async () => {
     try {
+      setLoading(true);
       const docRef = doc(db, "datas", "services");
       const docSnap = await getDoc(docRef);
       if (docSnap.exists()) {
@@ -29,11 +30,15 @@ const App = () => {
     } catch (e) {
       console.error("Error getting document:", e);
       setServiceData([]);
+    } finally {
+      setLoading(false);
     }
   };
 
+
   const getBranchData = async () => {
     try {
+      setLoading(true);
       const docRef = doc(db, "datas", "branch");
       const docSnap = await getDoc(docRef);
       if (docSnap.exists()) {
@@ -45,12 +50,13 @@ const App = () => {
     } catch (e) {
       console.error("Error getting document:", e);
       return null;
+    } finally {
+      setLoading(false);
     }
   };
 
   useEffect(() => {
     getServiceData().then(getBranchData()); 
-
   }, []);
 
   return (

@@ -1,19 +1,20 @@
 import Navbar from "../components/Navbar"
-import { useState } from "react"
+import { useContext, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { createUserWithEmailAndPassword } from "firebase/auth"
 import { auth, db } from "../firebaseSetup"
 import { doc, setDoc } from "firebase/firestore"
 import { ScaleLoader } from "react-spinners"
 import { v4 as uuidv4 } from 'uuid';
+import { AuthContext } from "../context/AuthContext"
 
 const Register = () => {
+  const { loading, setLoading } = useContext(AuthContext);
   const [name, setName] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [email, setEmail] = useState("");
-  const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
 
@@ -52,6 +53,7 @@ const Register = () => {
       navigate("/login");
 
     } catch (error) {
+      alert(error.message.slice(10));
       console.log(error);
     } finally {
       setLoading(false);

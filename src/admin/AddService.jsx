@@ -8,11 +8,10 @@ import { AuthContext } from "../context/AuthContext"
 import Footer from "../components/Footer"
 
 const AddService = () => {
-  const { setServiceData, admin, branchData, setBranchData, serviceData } = useContext(AuthContext);
+  const { setServiceData, admin, branchData, setBranchData, serviceData, loading, setLoading } = useContext(AuthContext);
   const [selectedBranch, setSelectedBranch] = useState(0);
   const [service, setService] = useState("");
   const [duration, setDuration] = useState("");
-  const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
 

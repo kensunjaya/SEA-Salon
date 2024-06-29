@@ -1,15 +1,18 @@
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { doc, getDoc } from 'firebase/firestore';
 import { db } from '../firebaseSetup';
+import { AuthContext } from '../context/AuthContext';
+import { ScaleLoader } from 'react-spinners';
 
 const Home = () => {
-
+  const { loading, setLoading } = useContext(AuthContext);
   const [isMaintenance, setIsMaintenance] = useState(false);
 
   const getMaintenanceStatus = async () => {
     try {
+      setLoading(true);
       const docRef = doc(db, "datas", "system");
       const docSnap = await getDoc(docRef);
       if (docSnap.exists()) {
@@ -19,6 +22,8 @@ const Home = () => {
       }
     } catch (e) {
       console.error("Error getting document:", e);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -28,6 +33,11 @@ const Home = () => {
 
   return (
     <div className="flex flex-col min-h-screen">
+      {loading && (
+        <div className="absolute inset-0 flex items-center justify-center bg-opacity-50 bg-black">
+          <ScaleLoader loading={loading} color="white" margin={5} height={35} />
+        </div>
+      )}
       {!isMaintenance ? (
         <>
           <Navbar active="home" />

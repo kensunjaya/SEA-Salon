@@ -9,11 +9,10 @@ import { AuthContext } from "../context/AuthContext"
 import { FaStar } from "react-icons/fa6"
 
 const Review = () => {
-  const { userData, user } = useContext(AuthContext);
+  const { userData, user, loading, setLoading } = useContext(AuthContext);
   const [tempRating, setTempRating] = useState(0);
   const [rating, setRating] = useState(0);
   const [comment, setComment] = useState("");
-  const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
   useEffect(() => {

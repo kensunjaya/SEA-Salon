@@ -4,7 +4,7 @@ import { AuthContext } from "../context/AuthContext";
 import { auth } from "../firebaseSetup";
 
 const Navbar = (props) => {
-  const { userData, setUserData } = useContext(AuthContext);
+  const { userData, setUserData, user } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const handleClick = (route) => {
@@ -26,7 +26,7 @@ const Navbar = (props) => {
   return (
     <div className="fixed w-full h-[8vh] bg-white font-sans flex items-center px-[4vh]">
       <div className="text-black text-[2vh] font-medium">SEA Salon</div>
-      {userData.name !== "Not Signed In" && (
+      {user && (
         <div className="flex flex-grow h-full ml-[10vh] text-black items-center px-[5vh]">
           <button className={`text-[1.75vh] py-[0.75vh] px-[2.5vh] rounded-full mx-[2.5vh] ${props.active === 'home' && 'bg-[#f0f0f0]'}`} onClick={() => handleClick("/")}>Home</button>
           {userData.role === "Admin" ? (
@@ -47,7 +47,7 @@ const Navbar = (props) => {
         </div>
       )}
       
-      {userData.name === "Not Signed In" ? (!props.authPage &&
+      {!user ? (!props.authPage &&
         <div className="flex items-center flex-grow justify-end">
           <button className="text-[1.75vh] py-[0.75vh] px-[2.5vh] rounded-full mx-[3vh] bg-black hover:bg-gray-500" onClick={() => handleClick("/login")}>Sign In</button>
         </div>

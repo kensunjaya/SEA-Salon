@@ -9,11 +9,8 @@ import Footer from "../components/Footer"
 import { FaStar } from "react-icons/fa6"
 
 const ViewReview = () => {
-  const { setServiceData, admin, user } = useContext(AuthContext);
-  const [password, setPassword] = useState("");
-  const [service, setService] = useState("");
+  const { admin, loading, setLoading } = useContext(AuthContext);
   const [reviewData, setReviewData] = useState([]);
-  const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
 
@@ -28,6 +25,7 @@ const ViewReview = () => {
 
   const getReviewData = async () => {
     try {
+      setLoading(true);
       const docRef = doc(db, "datas", "review");
       const docSnap = await getDoc(docRef);
       if (docSnap.exists()) {
@@ -37,6 +35,8 @@ const ViewReview = () => {
       }
     } catch (e) {
       console.error("Error getting document:", e);
+    } finally {
+      setLoading(false);
     }
   };
 

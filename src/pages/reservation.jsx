@@ -8,7 +8,7 @@ import { db } from "../firebaseSetup"
 import { ScaleLoader } from "react-spinners"
 
 const Reservation = () => {
-  const { user, branchData } = useContext(AuthContext);
+  const { user, branchData, loading, setLoading } = useContext(AuthContext);
   const [inputTypeTime, setInputTypeTime] = useState('text');
   const [inputTypeDate, setInputTypeDate] = useState('text');
   const [name, setName] = useState("");
@@ -19,7 +19,6 @@ const Reservation = () => {
   const [time, setTime] = useState("");
   const [errorMsg, setErrorMsg] = useState("");
   const [submitted, setSubmitted] = useState(false);
-  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const convertTimeToMinutes = (time) => {

@@ -8,14 +8,13 @@ import { AuthContext } from "../context/AuthContext"
 import Footer from "../components/Footer"
 
 const AddBranch = () => {
-  const { setBranchData, admin } = useContext(AuthContext);
+  const { setBranchData, admin, loading, setLoading } = useContext(AuthContext);
   const [inputTypeOpening, setInputTypeOpening] = useState('text');
   const [inputTypeClosing, setInputTypeClosing] = useState('text');
   const [branch, setBranch] = useState("");
   const [location, setLocation] = useState(""); 
   const [openTime, setOpenTime] = useState();
   const [closeTime, setCloseTime] = useState();
-  const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
 

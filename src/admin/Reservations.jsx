@@ -8,9 +8,8 @@ import { AuthContext } from "../context/AuthContext"
 import Footer from "../components/Footer"
 
 const Reservations = () => {
-  const { admin } = useContext(AuthContext);
+  const { admin, loading, setLoading } = useContext(AuthContext);
   const [reservationData, setReservationData] = useState([]);
-  const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
 
@@ -25,6 +24,7 @@ const Reservations = () => {
 
   const getReservationData = async () => {
     try {
+      setLoading(true);
       const docRef = doc(db, "datas", "reservation");
       const docSnap = await getDoc(docRef);
       if (docSnap.exists()) {
@@ -34,6 +34,8 @@ const Reservations = () => {
       }
     } catch (e) {
       console.error("Error getting document:", e);
+    } finally {
+      setLoading(false);
     }
   };
 
