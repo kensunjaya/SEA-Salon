@@ -1,16 +1,14 @@
 import Navbar from "../components/Navbar"
 import { useContext, useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
-import { signInWithEmailAndPassword } from "firebase/auth"
-import { auth, db } from "../firebaseSetup"
-import { doc, getDoc, setDoc, updateDoc } from "firebase/firestore"
+import { db } from "../firebaseSetup"
+import { doc, getDoc, updateDoc } from "firebase/firestore"
 import { ScaleLoader } from "react-spinners"
 import { AuthContext } from "../context/AuthContext"
 import Footer from "../components/Footer"
 
 const AddService = () => {
   const { setServiceData, admin, branchData, setBranchData, serviceData } = useContext(AuthContext);
-  const [password, setPassword] = useState("");
   const [selectedBranch, setSelectedBranch] = useState(0);
   const [service, setService] = useState("");
   const [duration, setDuration] = useState("");

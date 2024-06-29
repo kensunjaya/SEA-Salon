@@ -57,7 +57,7 @@ const Reservation = () => {
       const reservationData = await getReservationData();
       if (reservationData) {
         const newReservationData = {
-          reservations: [...reservationData.reservations, { name: name, phone: phoneNumber, service: branchData[selectedBranch].services[service].name, branch: branchData[selectedBranch].name, location: branchData[selectedBranch].location, date: date, time: time}]
+          reservations: [...reservationData.reservations, { reservedAt: new Date().toLocaleString(), name: name, phone: phoneNumber, service: branchData[selectedBranch].services[service].name, branch: branchData[selectedBranch].name, location: branchData[selectedBranch].location, date: date, time: time}]
         };
         await updateDoc(doc(db, "datas", "reservation"), {
           reservations: newReservationData.reservations,

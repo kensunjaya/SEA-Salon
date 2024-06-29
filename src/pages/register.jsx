@@ -1,6 +1,5 @@
-import Footer from "../components/Footer"
 import Navbar from "../components/Navbar"
-import { useId, useState } from "react"
+import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { createUserWithEmailAndPassword } from "firebase/auth"
 import { auth, db } from "../firebaseSetup"
@@ -57,8 +56,6 @@ const Register = () => {
     } finally {
       setLoading(false);
     }
-    
-    
   }
 
   return (

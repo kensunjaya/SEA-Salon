@@ -1,9 +1,8 @@
 import Navbar from "../components/Navbar"
 import { useContext, useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
-import { signInWithEmailAndPassword } from "firebase/auth"
-import { auth, db } from "../firebaseSetup"
-import { doc, getDoc, setDoc, updateDoc } from "firebase/firestore"
+import { db } from "../firebaseSetup"
+import { doc, getDoc } from "firebase/firestore"
 import { ScaleLoader } from "react-spinners"
 import { AuthContext } from "../context/AuthContext"
 import Footer from "../components/Footer"
@@ -54,6 +53,7 @@ const ViewReview = () => {
         {reviewData.map((review, index) => {
           return (
             <div key={index} className="mt-[2vh] border-2">
+              <div className="flex mb-[0.5vh] font-regular text-[1.25vh]">{review.time}</div>
               <div className="flex mb-[0.5vh]">
 
                 <FaStar color={review.rating > 0 ? '#ffb900' : 'gray'}/>

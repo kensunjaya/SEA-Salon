@@ -1,4 +1,4 @@
-import { useContext, useEffect } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Home from './pages/home';
 import Review from './pages/review';
@@ -14,6 +14,7 @@ import AddBranch from './admin/AddBranch';
 import Reservations from './admin/Reservations';
 
 const App = () => {
+  const [isMaintenance, setIsMaintenance] = useState(false);
   const {setServiceData, setBranchData} = useContext(AuthContext);
   const getServiceData = async () => {
     try {
@@ -21,7 +22,6 @@ const App = () => {
       const docSnap = await getDoc(docRef);
       if (docSnap.exists()) {
         setServiceData(docSnap.data().service);
-        console.log(docSnap.data().service);
       } else {
         console.log("Data does not exist in database!");
         setServiceData([]);
@@ -38,7 +38,6 @@ const App = () => {
       const docSnap = await getDoc(docRef);
       if (docSnap.exists()) {
         setBranchData(docSnap.data().branches);
-        console.log(docSnap.data().branches);
       } else {
         console.log("Data does not exist in database!");
         return null;
@@ -51,6 +50,7 @@ const App = () => {
 
   useEffect(() => {
     getServiceData().then(getBranchData()); 
+
   }, []);
 
   return (

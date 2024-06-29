@@ -1,9 +1,8 @@
 import Navbar from "../components/Navbar"
 import { useContext, useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
-import { signInWithEmailAndPassword } from "firebase/auth"
-import { auth, db } from "../firebaseSetup"
-import { doc, getDoc, setDoc, updateDoc } from "firebase/firestore"
+import { db } from "../firebaseSetup"
+import { doc, getDoc } from "firebase/firestore"
 import { ScaleLoader } from "react-spinners"
 import { AuthContext } from "../context/AuthContext"
 import Footer from "../components/Footer"
@@ -50,13 +49,14 @@ const Reservations = () => {
         <div className="mt-[5vh] text-[4vh] font-semibold">Reservation list</div>
         {reservationData.map((data, index) => {
           return (
-            <div key={index} className="mt-[2vh] p-[2vh] border border-black">
+            <div key={index} className="mt-[2vh] p-[1.5vh] border border-black">
+              <div className="flex mb-[0.5vh] font-regular">{data.reservedAt}</div>
               <div className="font-semibold flex">Branch: <div className="font-regular ml-[1vh]">{data.branch}</div></div>
               <div className="font-semibold flex">Name: <div className="font-regular ml-[1vh]">{data.name}</div></div>
               <div className="font-semibold flex">Phone Number: <div className="font-regular ml-[1vh]">{data.phone}</div></div>
               <div className="font-semibold flex">Location: <div className="font-regular ml-[1vh]">{data.location}</div></div>
               <div className="font-semibold flex">Service: <div className="font-regular ml-[1vh]">{data.service}</div></div>
-              <div className="font-semibold flex">Datetime: <div className="font-regular ml-[1vh]">{`${data.date} · ${data.time}`}</div></div>
+              <div className="font-semibold flex">Reserved for: <div className="font-regular ml-[1vh]">{`${data.date} · ${data.time}`}</div></div>
               
             </div>
           )

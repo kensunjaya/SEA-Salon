@@ -46,7 +46,7 @@ const Review = () => {
       const reviewData = await getReviewData();
       if (reviewData) {
         const newReviewData = {
-          review: [...reviewData.review, { rating: rating, comment: comment, name: userData.name }]
+          review: [...reviewData.review, { time: new Date().toLocaleString(), rating: rating, comment: comment, name: userData.name }]
         };
         await updateDoc(doc(db, "datas", "review"), {
           review: newReviewData.review,
