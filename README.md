@@ -25,4 +25,4 @@ npm run dev
 ```
 #### The website will automatically run on port `5173` if it is not currently used by any process
 #### Alternatively, click the url that is displayed by the vite itself
-<a href="https://kensunjaya.github.io/SEA-Salon/">Click me to view the public url (deployed web)</a>
+<a href="https://kensunjaya.github.io/SEA-Salon/" target="_blank">Click me to view the public url (deployed web)</a>
